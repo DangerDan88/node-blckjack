@@ -31,6 +31,7 @@ function shuffle(array) {
 
   return array;
 }
+// numbers show card values and the console is for first card dealed
 let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10];
 shuffle(arr);
-//console.log(arr);
+console.log(arr[0]);
