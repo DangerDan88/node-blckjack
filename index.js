@@ -3,13 +3,34 @@
 //2. create a hit and stand function
 //3. Create a bust function along with win
 // node args start at 2 we skip 1.
+// inquirer is not working need to figure that out
+const inquirer = import("inquirer");
 
 function homePage() {
   console.log("-----------------------------");
   console.log("      Welcome To BlackJack    ");
   console.log("-----------------------------");
+
+  inquirer
+    .prompt([
+      {
+        name: "greeting",
+        message: "What would you like to say?",
+        type: "input",
+      },
+    ])
+    .then(function (answer) {
+      console.log("Answers:", answer);
+    })
+    .catch((error) => {
+      if (error.isTtyError) {
+        console.log(error);
+      } else {
+        // Something else went wrong
+      }
+    });
+  Game();
 }
-homePage();
 
 // this function will shuffle the deck or numbers for black jack
 function shuffle(array) {
@@ -31,7 +52,9 @@ function shuffle(array) {
 
   return array;
 }
-// numbers show card values and the console is for first card dealed
+// numbers show card values and the console is for first card dealt
 let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10];
 shuffle(arr);
-console.log(arr[0]);
+//console.log(arr[0]);
+
+homePage();
