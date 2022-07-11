@@ -4,13 +4,15 @@
 //3. Create a bust function along with win
 // node args start at 2 we skip 1.
 // inquirer is not working need to figure that out
-const inquirer = import("inquirer");
+import inquirer from "inquirer";
 
 function homePage() {
   console.log("-----------------------------");
   console.log("      Welcome To BlackJack    ");
   console.log("-----------------------------");
+}
 
+var Game = function () {
   inquirer
     .prompt([
       {
@@ -29,8 +31,7 @@ function homePage() {
         // Something else went wrong
       }
     });
-  Game();
-}
+};
 
 // this function will shuffle the deck or numbers for black jack
 function shuffle(array) {
@@ -56,5 +57,5 @@ function shuffle(array) {
 let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10];
 shuffle(arr);
 //console.log(arr[0]);
-
+Game();
 homePage();
