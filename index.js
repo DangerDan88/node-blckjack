@@ -6,33 +6,6 @@
 // inquirer is not working need to figure that out
 import inquirer from "inquirer";
 
-function homePage() {
-  console.log("-----------------------------");
-  console.log("      Welcome To BlackJack    ");
-  console.log("-----------------------------");
-}
-
-var Game = function () {
-  inquirer
-    .prompt([
-      {
-        name: "greeting",
-        message: "What would you like to say?",
-        type: "input",
-      },
-    ])
-    .then(function (answer) {
-      console.log("Answers:", answer);
-    })
-    .catch((error) => {
-      if (error.isTtyError) {
-        console.log(error);
-      } else {
-        // Something else went wrong
-      }
-    });
-};
-
 // this function will shuffle the deck or numbers for black jack
 function shuffle(array) {
   let currentIndex = array.length,
@@ -56,6 +29,35 @@ function shuffle(array) {
 // numbers show card values and the console is for first card dealt
 let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10];
 shuffle(arr);
-//console.log(arr[0]);
-Game();
+
+function homePage() {
+  console.log("-----------------------------");
+  console.log("      Welcome To BlackJack    ");
+  console.log("-----------------------------");
+  let number = arr[0];
+  console.log(number);
+}
+
+var Game = function () {
+  inquirer
+    .prompt([
+      {
+        name: "turn",
+        message: "Hit?",
+        type: "confirm",
+      },
+    ])
+    .then(function (answer) {
+      console.log("Total", answer);
+      shuffle(arr);
+    })
+    .catch((error) => {
+      if (error.isTtyError) {
+        console.log(error);
+      } else {
+        // Something else went wrong
+      }
+    });
+};
 homePage();
+Game();
