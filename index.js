@@ -26,16 +26,22 @@ function shuffle(array) {
 
   return array;
 }
+
 // numbers show card values and the console is for first card dealt
-let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10];
+let arr = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10,
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10,
+];
 shuffle(arr);
+let newTop = [];
 
 function homePage() {
   console.log("-----------------------------");
   console.log("      Welcome To BlackJack    ");
   console.log("-----------------------------");
   let number = arr[0];
-  console.log(number);
+  console.log(arr[0]);
+  newTop.push(number);
 }
 
 var Game = function () {
@@ -47,17 +53,19 @@ var Game = function () {
         type: "confirm",
       },
     ])
+    // got the new shuffled number to display need to add to first number to get total still
     .then(function (answer) {
-      console.log("Total", answer);
       shuffle(arr);
+      console.log("Next card", arr[0]);
     })
     .catch((error) => {
       if (error.isTtyError) {
         console.log(error);
       } else {
-        // Something else went wrong
       }
     });
 };
+
+//addCards();
 homePage();
 Game();
