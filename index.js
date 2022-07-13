@@ -57,6 +57,8 @@ var Game = function () {
     .then(function (answer) {
       shuffle(arr);
       console.log("Next card", arr[0]);
+      newTop.push(arr[0]);
+      addCards();
     })
     .catch((error) => {
       if (error.isTtyError) {
@@ -65,7 +67,15 @@ var Game = function () {
       }
     });
 };
+// maybe try not a loop since it console both numbers before sending sum
+function addCards() {
+  let sum = 0;
+  for (let i = 0; i < newTop.length; i++) {
+    sum += parseInt(newTop[i]);
+    console.log(sum);
+  }
+}
 
-//addCards();
+addCards();
 homePage();
 Game();
