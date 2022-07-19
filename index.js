@@ -34,6 +34,7 @@ let arr = [
 ];
 shuffle(arr);
 let newTop = [];
+let nextTurn = [];
 
 function homePage() {
   console.log("-----------------------------");
@@ -54,11 +55,15 @@ var Game = function () {
       },
     ])
     // got the new shuffled number to display need to add to first number to get total still
-    .then(function (answer) {
-      shuffle(arr);
-      console.log("Next card", arr[0]);
-      newTop.push(arr[0]);
-      addCards();
+    .then(function (answer1) {
+      if (answer1.turn === true) {
+        shuffle(arr);
+        console.log("Next card", arr[0]);
+        newTop.push(arr[0]);
+        addCards();
+      } else {
+        console.log(answer1);
+      }
     })
     .catch((error) => {
       if (error.isTtyError) {
@@ -68,6 +73,7 @@ var Game = function () {
     });
 };
 // maybe try not a loop since it console both numbers before sending sum
+// fix node version and see if lodash sum method works better for changing turns
 function addCards() {
   let sum = 0;
   for (let i = 0; i < newTop.length; i++) {
