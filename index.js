@@ -45,32 +45,29 @@ function homePage() {
   newTop.push(number);
 }
 
-var Game = function () {
-  inquirer
-    .prompt([
-      {
-        name: "turn",
-        message: "Hit?",
-        type: "confirm",
-      },
-    ])
-    // got the new shuffled number to display need to add to first number to get total still
-    .then(function (answer1) {
-      if (answer1.turn === true) {
-        shuffle(arr);
-        console.log("Next card", arr[0]);
-        newTop.push(arr[0]);
-        addCards();
-      } else {
-        console.log(answer1);
-      }
-    })
-    .catch((error) => {
-      if (error.isTtyError) {
-        console.log(error);
-      } else {
-      }
-    });
+var prompt = function (question) {
+  return (
+    inquirer
+      .prompt([
+        {
+          name: "turn",
+          message: "Hit?",
+          type: "confirm",
+        },
+      ])
+      // got the new shuffled number to display need to add to first number to get total still
+      .then(function (answer1) {
+        if (answer1.turn === true) {
+          shuffle(arr);
+          console.log("Next card", arr[0]);
+          newTop.push(arr[0]);
+          addCards();
+          return prompt(question);
+        } else {
+          console.log("No hit stay at", arr[0]);
+        }
+      })
+  );
 };
 // maybe try not a loop since it console both numbers before sending sum
 // fix node version and see if lodash sum method works better for changing turns
@@ -84,4 +81,4 @@ function addCards() {
 
 addCards();
 homePage();
-Game();
+prompt();
