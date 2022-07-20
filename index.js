@@ -5,7 +5,7 @@
 // node args start at 2 we skip 1.
 // inquirer is not working need to figure that out
 import inquirer from "inquirer";
-
+import lodash from "lodash";
 // this function will shuffle the deck or numbers for black jack
 function shuffle(array) {
   let currentIndex = array.length,
@@ -41,7 +41,7 @@ function homePage() {
   console.log("      Welcome To BlackJack    ");
   console.log("-----------------------------");
   let number = arr[0];
-  console.log(arr[0]);
+  console.log("First card", arr[0]);
   newTop.push(number);
 }
 
@@ -55,7 +55,7 @@ var prompt = function (question) {
           type: "confirm",
         },
       ])
-      // got the new shuffled number to display need to add to first number to get total still
+      // need to figure out bust logic and win logic
       .then(function (answer1) {
         if (answer1.turn === true) {
           shuffle(arr);
@@ -72,11 +72,21 @@ var prompt = function (question) {
 // maybe try not a loop since it console both numbers before sending sum
 // fix node version and see if lodash sum method works better for changing turns
 function addCards() {
-  let sum = 0;
-  for (let i = 0; i < newTop.length; i++) {
-    sum += parseInt(newTop[i]);
-    console.log(sum);
+  let sum = lodash.sum(newTop);
+  console.log("Total", sum);
+  if (sum > 21) {
+    console.log("bust");
+    newGame();
+    // need to reset game here
+  } else if (sum === 21) {
+    console.log("blackjack");
+    newGame();
   }
+}
+
+function newGame() {
+  homePage();
+  prompt();
 }
 
 addCards();
