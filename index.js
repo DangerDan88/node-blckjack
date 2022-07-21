@@ -85,8 +85,8 @@ function addCards() {
 }
 
 function newGame() {
+  newTop.length = 0;
   homePage();
-  prompt();
 }
 
 addCards();
