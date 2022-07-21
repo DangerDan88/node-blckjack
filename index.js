@@ -32,6 +32,9 @@ let arr = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10,
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10,
 ];
+
+/// dealer array
+let dealArr = [14, 15, 16, 17, 18, 19, 20, 21];
 shuffle(arr);
 let newTop = [];
 let nextTurn = [];
@@ -43,6 +46,11 @@ function homePage() {
   let number = arr[0];
   console.log("First card", arr[0]);
   newTop.push(number);
+}
+
+function dealer() {
+  shuffle(dealArr);
+  console.log("Dealer number", dealArr[0]);
 }
 
 var prompt = function (question) {
@@ -64,7 +72,8 @@ var prompt = function (question) {
           addCards();
           return prompt(question);
         } else {
-          console.log("No hit stay at", arr[0]);
+          console.log("No hit stay at", lodash.sum(newTop));
+          dealer();
         }
       })
   );
