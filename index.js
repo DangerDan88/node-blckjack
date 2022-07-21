@@ -51,6 +51,11 @@ function homePage() {
 function dealer() {
   shuffle(dealArr);
   console.log("Dealer number", dealArr[0]);
+  if (dealArr[0] === 21) {
+    console.log("Dealer blackjack hit or bust", dealArr[0]);
+  } else if (dealArr[0] > 21) {
+    console.log("bust");
+  }
 }
 
 var prompt = function (question) {
@@ -74,6 +79,11 @@ var prompt = function (question) {
         } else {
           console.log("No hit stay at", lodash.sum(newTop));
           dealer();
+          if (dealArr[0] > lodash.sum(newTop)) {
+            console.log("You lose");
+          } else if (dealArr[0] < lodash.sum(newTop)) {
+            console.log("You win");
+          }
         }
       })
   );
