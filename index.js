@@ -33,7 +33,6 @@ let arr = [
 let dealArr = [14, 15, 16, 17, 18, 19, 20, 21];
 shuffle(arr);
 let newTop = [];
-let nextTurn = [];
 
 function homePage() {
   console.log("-----------------------------");
