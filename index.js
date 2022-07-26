@@ -81,6 +81,8 @@ var prompt = function (question) {
           console.log("-----------------------------");
           console.log("You win");
           console.log("-----------------------------");
+        } else if (dealArr[0] === lodash.sum(newTop)) {
+          console.log("Tie");
         }
       }
     });
@@ -94,7 +96,6 @@ function addCards() {
     console.log("Bust");
     console.log("New Game starts now");
     newGame();
-    // need to reset game here
   } else if (sum === 21) {
     console.log("-----------------------------");
     console.log("Blackjack");
