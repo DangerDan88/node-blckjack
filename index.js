@@ -1,9 +1,5 @@
 // Black jack Node
-// 1. start game and deal out a value to yourself then deal out to computer
-//2. create a hit and stand function
-//3. Create a bust function along with win
-// node args start at 2 we skip 1.
-// inquirer is not working need to figure that out
+
 import inquirer from "inquirer";
 import lodash from "lodash";
 // this function will shuffle the deck or numbers for black jack
@@ -59,46 +55,51 @@ function dealer() {
 }
 
 var prompt = function (question) {
-  return (
-    inquirer
-      .prompt([
-        {
-          name: "turn",
-          message: "Hit?",
-          type: "confirm",
-        },
-      ])
-      // need to figure out bust logic and win logic
-      .then(function (answer1) {
-        if (answer1.turn === true) {
-          shuffle(arr);
-          console.log("Next card", arr[0]);
-          newTop.push(arr[0]);
-          addCards();
-          return prompt(question);
-        } else {
-          console.log("No hit stay at", lodash.sum(newTop));
-          dealer();
-          if (dealArr[0] > lodash.sum(newTop)) {
-            console.log("You lose");
-          } else if (dealArr[0] < lodash.sum(newTop)) {
-            console.log("You win");
-          }
+  return inquirer
+    .prompt([
+      {
+        name: "turn",
+        message: "Hit?",
+        type: "confirm",
+      },
+    ])
+    .then(function (answer1) {
+      if (answer1.turn === true) {
+        shuffle(arr);
+        console.log("Next card", arr[0]);
+        newTop.push(arr[0]);
+        addCards();
+        return prompt(question);
+      } else {
+        console.log("No hit stay at", lodash.sum(newTop));
+        dealer();
+        if (dealArr[0] > lodash.sum(newTop)) {
+          console.log("-----------------------------");
+          console.log("You lose");
+          console.log("-----------------------------");
+        } else if (dealArr[0] < lodash.sum(newTop)) {
+          console.log("-----------------------------");
+          console.log("You win");
+          console.log("-----------------------------");
         }
-      })
-  );
+      }
+    });
 };
-// maybe try not a loop since it console both numbers before sending sum
-// fix node version and see if lodash sum method works better for changing turns
+
 function addCards() {
   let sum = lodash.sum(newTop);
   console.log("Total", sum);
   if (sum > 21) {
-    console.log("bust");
+    console.log("-----------------------------");
+    console.log("Bust");
+    console.log("New Game starts now");
     newGame();
     // need to reset game here
   } else if (sum === 21) {
-    console.log("blackjack");
+    console.log("-----------------------------");
+    console.log("Blackjack");
+    console.log("New Game starts now");
+
     newGame();
   }
 }
