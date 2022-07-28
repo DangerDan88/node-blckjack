@@ -81,7 +81,7 @@ var prompt = function (question) {
           console.log("You win");
           console.log("-----------------------------");
         } else if (dealArr[0] === lodash.sum(newTop)) {
-          console.log("Tie");
+          console.log("Tie, push");
         }
       }
     });
